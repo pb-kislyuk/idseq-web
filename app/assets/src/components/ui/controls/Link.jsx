@@ -25,11 +25,11 @@ class Link extends React.Component {
   };
 
   render() {
-    const { href, className, children, external } = this.props;
+    const { href, className, children, color, external } = this.props;
     return (
       <a
         href={href}
-        className={cx(cs.link, className)}
+        className={cx(cs.link, className, color)}
         target={external ? "_blank" : null}
         rel="noopener noreferrer"
         onClick={this.onClick}
@@ -45,6 +45,7 @@ Link.propTypes = {
   className: PropTypes.string,
   external: PropTypes.bool,
   href: PropTypes.string,
+  color: PropTypes.string,
 
   // We intentionally don't have an onClick prop, because we don't want to encourage arbitrary onClick handlers,
   // since there is already an on-click behavior (following the link href). logAnalyticsEvent is an exception.
@@ -55,6 +56,7 @@ Link.propTypes = {
 Link.defaultProps = {
   analyticsEventData: {},
   externalLink: false,
+  color: "primary-light",
 };
 
 export default Link;
