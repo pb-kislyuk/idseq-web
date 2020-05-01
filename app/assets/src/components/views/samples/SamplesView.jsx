@@ -453,7 +453,9 @@ class SamplesView extends React.Component {
 
   handleBulkDownloadModalOpen = () => {
     const { appConfig, admin } = this.context || {};
-    if (!appConfig.maxSamplesBulkDownload) {
+    // We expect the max sample limit to be set in the AppConfig. If it's not, something has gone wrong.
+    // However, since the sample limit for bulk downloads doesn't apply to admins, admins can bypass this message.
+    if (!appConfig.maxSamplesBulkDownload && !admin) {
       this.setState({
         bulkDownloadButtonTempTooltip:
           "Unexpected issue. Please contact us for help.",
